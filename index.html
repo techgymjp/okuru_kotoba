@@ -168,7 +168,7 @@
         </button>
         
         <div class="stats" id="stats">
-            残り: 18件
+            読み込み中…
         </div>
         
         <button class="button reset-button" id="resetButton" onclick="resetMessages()" style="display: none;">
@@ -177,11 +177,11 @@
     </div>
 
     <script>
-        // メッセージリスト（18個、重複なし）
+        // メッセージリスト（件数は配列の長さから自動で数える）
         const sampleMessages = [
             "みんなが行く野原には野イチゴはない",
             "FCは言ってしまえば上手くいかないことのほぼ全てを他責にできる。だから多くの弱い人は楽な方＝他責の方に流れてしまう。何でも他責にできてしまうから、自責思考の人が勝つ。",
-            "自分の槍がビジネスで使い物なるか？が大事で、大したことなかったら、自由だが仕事もないフリーターのようになっちまうよ。",
+            "自分の槍がビジネスで使い物になるか？が大事で、大したことなかったら、自由だが仕事もないフリーターのようになっちまうよ。",
             "世の中は常に具体と抽象、現実と理想の行ったり来たり。そのバランスなんだよ軸がブレないというのは、動かないんじゃなくて、左行って右行って、その軸が動かない、ということ。",
             "ふぅ…ホントFCビジネスがあらゆる意味で「軽く」なってきたな。悪いことじゃないんだが、業界が薄まってる感を近頃感じる。",
             "「誰が行くの？誰が使うの？儲からないよ！」と言われるところから、本当のブルーオーシャン的ビッグビジネスが生まれる。",
@@ -193,7 +193,7 @@
             "FC業界はやってる事が内輪の想定内過ぎて、それじゃ興味薄れてくんで、外からの刺激が必要。",
             "「たとえ明日この世が滅んでも、今日僕はリンゴの木を植える」なんてMartin Lutherの言葉を噛み締めながら、僕は今日もホッピーを飲むよ…",
             "世の中の99%の人は成功しない、だから成功したいなら人がやらない1%をヤレ！ということ。",
-            "know-howで重要なのはhow。howは何をやるか？ではなくて「どうやって」やるか？一部の優秀な人以外は◯◯をやれと教えられても、どっやってやるか？が少しでもボヤッとしてると動けない。",
+            "know-howで重要なのはhow。howは何をやるか？ではなくて「どうやって」やるか？一部の優秀な人以外は◯◯をやれと教えられても、どうやってやるか？が少しでもボヤッとしてると動けない。",
             "フランチャイズ本部の社長は何よりコミュニティ・リーダーとしてのキャラ立ちが大事だ。イメージで言えばイチロー氏みたいな感じが最高。変わり者だがそこに独自の世界観がある。そして変化に対応しながら成長を続けて、ブレない。そこに価値観の合う人が集まり着いていくイメージが持てる。比較で言えば松井秀喜氏は向いてない。こちらは人格者で優しいが、何故か人が着いてくイメージがない。",
             "ダメな人には考え方の癌みたいのがあって、コイツは完全に取り去ることが難しい。ちょっと消えたと思ってもまた再発する。やっぱり付き合う人、周りの環境を変えることだな♪",
             "「常に疑え」が大事なスタンス。自分の知識や経験なんて勝ち“続ける”には邪魔どころかマイナス。自らの成功体験によってフロントガラスの大部分を曇らせて運転してる人が多くて危ない。「我思う、ゆえに我あり」の「我」を疑ってかかるくらいで丁度良い♪",
@@ -226,24 +226,24 @@
             "ダメな本部がダメな広告だして、ダメな人が加盟して、ダメな人ばかり集まり、みんな失敗して更にダメ本部になり、本部も潰れてそうなので、更にダメな広告出して、もっとダメな人を集めなければならなくなる…そんな本部も少なからずあるんです（笑）",
              "自分の船のこぎ方を教えてくれる、研修で身につけさせてくれる。どこへ向って漕げばよいのかナビをしてくれる。これがFC本部。漕ぎ出した人たちが最初につまずく、上手くいかないポイント、悩みやすいポイントは、そこを上手に乗り切るポイントがまとまっている。これが「マニュアル」そして周りを見れば、自分と同じように舟を漕いでいる「仲間」がいる。ずっと前のほうをスイスイ上手に漕いでいる先輩たちもいる。その先輩たちにアドバイスしてもらうこともできる…この「心強い」システムが、本当のフランチャイズ。",
             "昭和の時代は牛角の本部がどんどんキレイな大きなビルに移転すると加盟店は、伸びてる！と拍手したが、今は逆。立派なビルは売上も利益も生まないのでロイヤリティの無駄遣い、となる。MJG接骨院やコペルも立派なビルに移転してしばらくして破綻した。",
-            "8割の方が成功してます＝5人に1人が失敗する。自分がその1人になる可能性も。そして成功してる人の月商は400万で平均月商は300万です！と言われると上手くいけば350万、最悪250万はいくだろ？と単純に思っちゃうの人が多い。アナタがサラリーマンで出世してなかったら、平均以上やれる可能性はかなり低い。",
+            "8割の方が成功してます＝5人に1人が失敗する。自分がその1人になる可能性も。そして成功してる人の月商は400万で平均月商は300万です！と言われると上手くいけば350万、最悪250万はいくだろ？と単純に思っちゃう人が多い。アナタがサラリーマンで出世してなかったら、平均以上やれる可能性はかなり低い。",
                "映画「The Founder〜ハンバーガー帝国のひみつ」は性格的に起業に向くか否か？のリトマス紙になる。マクドナルド兄弟からFC展開権を強引に得て、最後は「創業者」の肩書まで自分のモノにするレイを怪物的英雄と評価するか？、それとも不憫な兄弟に感情移入するか？前者は起業向き、後者は向かない。",
             "マルチミキサーのセールスマンだったレイ・クロック（当時54歳）は、その異常な発注数から繁盛店であるマクドナルド兄弟のハンバーガー屋をみつけ、目をつける。FC化を勧めるが兄弟は興味なし。ならFC展開の権利を売ってくれ！と口説き落としてマクドナルドFCビジネスが始まる。皆さんの取引先にマクドナルドみたいな繁盛店ナイですか？（笑）",
             "居抜きを選んでしまう人が多いのは、初期投資が低くなる＝リスクが小さくなると無思考で思うから。確かに金は安くすむが、居抜きを選んだことで失うものも多い。昔は「人の手垢がついた店は辞めておけ」と言われた。",
              "「鰻の成瀬」が2年ちょっとで300店越えたのは間違いなくFC史に刻まれる。スゴイ。でもホントにスゴイのは本部社長がこうやれば鰻FCがイケるんじゃ？という発想、アイデアだけから始まってるとこ。繁盛店を一生懸命作ったわけじゃない。分かる人にしか分かんないと思うけど、ここにFCの可能性があるのよ。",
             "FCはちゃんとやれば素晴らしいビジネスモデルだからこそ、金儲け目的の本部や、欲に目がくらんだ加盟者に入ってほしくないんだよ！",
             "FCにおける「誰でもできる」という罠。未経験歓迎！誰でもできます！なんて誘い文句にはいくつかの「罠」があるのは当たり前。ほぼ儲からない、長続きしない、実は見えないところで超大変…そもそも広告自体が嘘、が多い。「商売」というのは誰でも出来るもんじゃないんだよ。",
-            "・そのFCがどのくらい難しいか？・そのFCのどこが？何が？難しいか？そこから考えて自分なら成功デキる！と思えるか？「誰にでも簡単に出来きるものじゃない」だからこそ、その商売で長く利益を出せる、んだよ。",
+            "・そのFCがどのくらい難しいか？・そのFCのどこが？何が？難しいか？そこから考えて自分なら成功デキる！と思えるか？「誰にでも簡単に出来るものじゃない」だからこそ、その商売で長く利益を出せる、んだよ。",
             "FC本部と加盟店の信頼関係がFCビジネスの肝。同じ施策を行ってもその関係性によって、真逆の結果になることも。人は論理じゃなくて感情で動く。これはFCも同じ。",
             "今は大きな本部だって1店舗から始まってます。モスバーガーだって証券マンの脱サラ1店舗から。逆に大手企業が企業価値を活かしてのFC化は上手く行かない。健康総合企業大手タニタのタニタ食堂とか。フィッミーも…",
              "ダスキン創業者の駒井茂春氏が説く「加盟店３つの病気」　１）他力本願病　２）努力限定病　３）隣の花は赤い病本部におんぶにだっこじゃダメ！現状に満足するなチャレンジしろ！他のFCに浮気するな！ということ。正しい（笑）",
             "「世の中は、確信をもった少数者が付和雷同の大多数を巻き込みムーブメントとなって変わっていく」これは東進（ナガセ）の新入社員研修で永瀬社長が語った言葉。「確信をもった少数者」というのは、「新しい価値に気づき、新しいことをやってる（周りから見たら）ヘンな奴ら」ということ。新しいフランチャイズに挑戦していく醍醐味がここにあるんだよなぁ。幸せ（笑）",
             "FCでどういう人が成功するか？というと、FCだから成功できると簡単に思わない人。逆説っぽいが本質。",
             "良いFC本部とダメなFC本部がありますが、それは良い社長が率いるFC本部と、ダメな社長がやってる本部がある、ということ、です。なので、ダメなFC本部が何かのきっかけで、良いFC本部に変わったりはしません。",
-            "今から200年前に「秘伝の製法＆秘伝のタレでつくる唐揚げ」をメニュー開発し、これで自分の店で出すよりこのメニューの「作り方」というノウハウを売ろう、その方が拡がると考えたサンダースおじさんはエライ。これからはモノを売るよりノウハウという情報を売ったほうが価値がある、とどこかで気づいていた。",
+            "今から80年以上前に「秘伝の製法＆秘伝のタレでつくる唐揚げ」をメニュー開発し、これで自分の店で出すよりこのメニューの「作り方」というノウハウを売ろう、その方が拡がると考えたサンダースおじさんはエライ。これからはモノを売るよりノウハウという情報を売ったほうが価値がある、とどこかで気づいていた。",
             "FC本部はそのお金を払い続けてもらう「価値あるビジネスモデル・ノウハウ・集客力」を提供できるか？が問われる。FCなんだから払ってもらうのは当たり前、なんて腹の底で考えている本部は長くは続きません。",
              "「有頂天」という言葉があるが、「天」というのは足が地についていないこと。そこから上に昇っていけるかは社長の考え方次第。",
-            "直営向きの社長とFC向きの社長というテーマがある。様々は観点があるが、基本は「加盟してくれた相手の店が儲かることが直営で儲けることよりも嬉しいという感覚」がどれだけあるか、だと思う。この感覚は本能的な欲のところからきていて、伝説のAV男優 加藤鷹氏もこんなこと言っている。「同じSEXをするなら相手を悦ばせ、自分ももっと深い快感を得たいという欲望は、人間の三大欲のひとつである」まずは相手を悦ばせるから自らの深い快感が得られる、この順番が大事で、ここに響く人はFC本部社長向き、ということね（笑）",
+            "直営向きの社長とFC向きの社長というテーマがある。様々な観点があるが、基本は「加盟してくれた相手の店が儲かることが直営で儲けることよりも嬉しいという感覚」がどれだけあるか、だと思う。この感覚は本能的な欲のところからきていて、伝説のAV男優 加藤鷹氏もこんなこと言っている。「同じSEXをするなら相手を悦ばせ、自分ももっと深い快感を得たいという欲望は、人間の三大欲のひとつである」まずは相手を悦ばせるから自らの深い快感が得られる、この順番が大事で、ここに響く人はFC本部社長向き、ということね（笑）",
             "僕のフランチャイズとの出会いは、50年前に実家の酒屋の斜め前の八百屋がセブンイレブンになったこと。無茶苦茶汚い店がピッカピカのセブンイレブンになった。どーせまた…と思っていたらピッカピカのまま繁盛し続けた。やってる夫婦は同じなのに。フランチャイズってスゲーと思った（笑）これが原点。",
             "オーナーとして飯はそこそこ食えるが人雇ったら利益はチョボチョボ以下、というFCモデルでは経営者にはなれない。それをFC本部はウチは負けないFCですよ、リスクが小さいのがウリ！と言ったりする。それは嘘じゃ無いけど、リスクをも取らなきゃ経営者にはなれないよ。",
             "オーナーで成功するまではカネで苦労する。カネの苦労が無くなって複数店舗経営して経営者になるとヒトで苦労する。ヒトの苦労が無くなり、既存事業は任せて回るような仕組みが出来たら、企業家になって新事業の「企て」をする。別の視点から言えば、FCを選ぶ際にオーナーから経営者になっている比率を見ることも重要。",
@@ -259,9 +259,10 @@
             "暑い…でも…だから今夜のビールは美味い！と考える。これサラリーマン上級の発想。そうやってポジティブに日々頑張れば出世します。"
         ];
 
-        // 利用可能なメッセージのコピーを作成（シャッフル用）
-        let availableMessages = [...sampleMessages];
+        const STORAGE_KEY = 'okuru-kotoba-v2';
+        let availableMessages = [];
         let shownMessages = [];
+        let busy = false;
 
         // Fisher-Yatesアルゴリズムで配列をシャッフル
         function shuffleArray(array) {
@@ -272,88 +273,104 @@
             return array;
         }
 
-        // ボタン音を再生する関数
+        // 残りの順番と表示済みをブラウザに保存する（再読み込みしても続きから）
+        function save() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({ available: availableMessages, shown: shownMessages }));
+            } catch (e) { /* 保存できない環境では何もしない */ }
+        }
+
+        function load() {
+            try {
+                const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                if (!data) return false;
+                // 言葉のリストを編集したあとでも壊れないよう、今のリストにある言葉だけ残す
+                const all = new Set(sampleMessages);
+                const shown = data.shown.filter(m => all.has(m));
+                const seen = new Set([...data.available, ...shown]);
+                const added = sampleMessages.filter(m => !seen.has(m));
+                availableMessages = data.available.filter(m => all.has(m)).concat(shuffleArray(added));
+                shownMessages = shown;
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // 効果音は最初に1回だけ読み込み、押すたびに複製して鳴らす（連打しても音が途切れない）
+        const buttonSound = new Audio('btn.mp3');
+        buttonSound.preload = 'auto';
+        buttonSound.volume = 0.5;
         function playButtonSound() {
-            const audio = new Audio('btn.mp3');
-            audio.volume = 0.5; // 音量を50%に設定
-            audio.play().catch(error => {
-                // 音声再生に失敗した場合（ファイルが見つからない等）
+            const sound = buttonSound.cloneNode();
+            sound.volume = 0.5;
+            sound.play().catch(error => {
                 console.log('ボタン音の再生に失敗しました:', error);
             });
         }
 
         function showNextMessage() {
-            // ボタン音を再生
+            if (busy || availableMessages.length === 0) return;
+            busy = true;
             playButtonSound();
-            
-            if (availableMessages.length === 0) {
-                document.getElementById('nextButton').disabled = true;
-                document.getElementById('resetButton').style.display = 'inline-block';
-                return;
-            }
 
-            // ランダムにメッセージを選択（シャッフルされた配列の最初から取得）
             const selectedMessage = availableMessages.shift();
-            
-            // 表示済みメッセージに追加
             shownMessages.push(selectedMessage);
+            save();
 
-            // メッセージを表示
             const messageElement = document.getElementById('messageText');
             messageElement.classList.remove('show');
             messageElement.classList.remove('initial-message');
-            
+
             setTimeout(() => {
                 messageElement.textContent = selectedMessage;
                 messageElement.classList.add('show');
+                busy = false;
             }, 250);
 
-            // 統計を更新
             updateStats();
         }
 
         function updateStats() {
             const statsElement = document.getElementById('stats');
             statsElement.textContent = `残り: ${availableMessages.length}件 | 表示済み: ${shownMessages.length}件`;
-            
-            if (availableMessages.length === 0) {
-                statsElement.textContent += ' | すべてのメッセージを表示しました！';
-                document.getElementById('nextButton').disabled = true;
-                document.getElementById('resetButton').style.display = 'inline-block';
-            }
+            const done = availableMessages.length === 0;
+            if (done) statsElement.textContent += ' | すべてのメッセージを表示しました！';
+            document.getElementById('nextButton').disabled = done;
+            document.getElementById('resetButton').style.display = done ? 'inline-block' : 'none';
         }
 
         function resetMessages() {
-            // ボタン音を再生
             playButtonSound();
-            
-            // メッセージをリセットしてシャッフル
             availableMessages = shuffleArray([...sampleMessages]);
             shownMessages = [];
-            
+            save();
+
             const messageElement = document.getElementById('messageText');
             messageElement.classList.remove('show');
             messageElement.classList.add('initial-message');
-            
             setTimeout(() => {
                 messageElement.textContent = '「次の言葉を見る」ボタンを押してください';
                 messageElement.classList.add('show');
             }, 250);
-            
-            document.getElementById('nextButton').disabled = false;
-            document.getElementById('resetButton').style.display = 'none';
-            
             updateStats();
         }
 
-        // 初期化：メッセージをシャッフル
         function initializeApp() {
-            availableMessages = shuffleArray([...sampleMessages]);
-            document.getElementById('messageText').classList.add('show');
+            if (!load()) {
+                availableMessages = shuffleArray([...sampleMessages]);
+                shownMessages = [];
+                save();
+            }
+            const messageElement = document.getElementById('messageText');
+            if (shownMessages.length > 0) {
+                messageElement.textContent = shownMessages[shownMessages.length - 1];
+                messageElement.classList.remove('initial-message');
+            }
+            messageElement.classList.add('show');
             updateStats();
         }
 
-        // 初期表示
         window.onload = initializeApp;
     </script>
 </body>
